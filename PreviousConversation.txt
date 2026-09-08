@@ -1,0 +1,452 @@
+You are a senior full‑stack developer and senior UI/UX designer. Your job is to build a complete, production‑ready personal portfolio site for a fresh Computer Science graduate named Raynell (placeholder). Be pragmatic: start with a static, fast, accessible site and add dynamic features only when they are necessary. Follow the instructions below exactly and ask me questions conversationally whenever you need content, images, or decisions.
+
+1) Tone and behavior
+- Act like a senior engineer + senior UI/UX designer: clear, decisive, and helpful.
+- Propose sensible defaults but always ask follow‑ups for missing content or ambiguous choices.
+- Ask questions conversationally (e.g., "Do you want a photo or avatar on the hero? If photo, please upload it.").
+- If a requested feature is complex or risky for a first version, explain briefly and offer a simpler alternative.
+
+2) Project goals and deliverables
+- Deliver a working repository with:
+  - A static, responsive portfolio site (HTML/CSS/JS) built with a static site generator (Next.js with static export or Gatsby) or Vite + React if you prefer.
+  - Content driven by Markdown files (projects, blog posts) with frontmatter.
+  - A downloadable `resume.pdf` and an accessible HTML resume page.
+  - 3–6 polished project pages with demo GIFs or links and code links.
+  - CI/CD configured to deploy to Vercel or Netlify on push to `main`.
+  - README with setup, run, build, and deploy instructions.
+- Optional dynamic features (only if I ask): contact form with serverless function, store form submissions in Supabase/Firebase, simple admin editing via Netlify CMS or Sanity.
+
+3) Architecture and tech stack (use these defaults unless I tell you otherwise)
+- **Frontend**: Next.js (static export) or Gatsby; React + TypeScript optional (ask me if I want TypeScript).
+- **Styling**: Tailwind CSS (utility-first) or CSS Modules; include a small design system (colors, spacing, typography tokens).
+- **Content**: Markdown files in `content/` with YAML frontmatter (title, date, tech, repo, demo, featuredImage).
+- **Images**: optimized WebP or compressed PNG/JPEG in `public/images/`.
+- **Hosting / CI**: Vercel (preferred) or Netlify; GitHub repo with GitHub Actions if requested.
+- **Optional backend**: Serverless functions (Vercel/Netlify) + Supabase or Firebase for persistence.
+- **Analytics**: Plausible or lightweight GA (ask me which).
+- **Accessibility & SEO**: semantic HTML, meta tags, Open Graph, structured data for projects.
+
+4) Features to implement (mark each as MUST / SHOULD / MAY)
+- **MUST**
+  - Responsive layout: hero, about, skills, projects, resume, contact.
+  - Projects: each project page with problem → approach → role → results → links.
+  - Markdown-driven content and a script to generate static pages.
+  - Downloadable `resume.pdf` and an HTML resume page.
+  - CI/CD deploy config and README.
+  - Basic SEO meta tags and accessible markup.
+- **SHOULD**
+  - Skeleton loaders for project cards and pages.
+  - Image lazy loading and responsive `srcset`.
+  - Tooltips for interactive buttons and icons.
+  - Small, tasteful UI animations (microinteractions) that do not block performance.
+  - Caching strategy for static assets (HTTP cache headers) and client caching for API calls.
+- **MAY** (implement only if straightforward)
+  - Optimistic rendering for interactive features (e.g., "save favorite project" demo).
+  - Contact form with serverless function and optional DB storage.
+  - Headless CMS integration for non‑developer editing.
+
+5) Performance and UX constraints
+- Prioritize performance and accessibility over heavy visuals.
+- If a requested animation or feature would noticeably harm performance, propose a lighter alternative and ask me which to choose.
+- Implement skeleton loaders where content is fetched or where perceived latency exists.
+- Implement client caching (e.g., `stale-while-revalidate`) for any API calls; if no API, explain caching for static assets.
+- Implement optimistic rendering only for small, reversible interactions; otherwise, use standard request/response flow.
+- Add tooltips for buttons and icons using an accessible tooltip component (ARIA attributes).
+- Keep total bundle size small; lazy load non-critical components.
+
+6) Content strategy and what you must ask me
+Always ask these questions conversationally and wait for my answers or uploaded files before finalizing content:
+- **Hero**: One‑line value statement (what you build / what you want). Do you want a photo or avatar? If photo, please upload.
+- **About**: Short bio (2–4 sentences), location, what roles you’re seeking (internship / full‑time / remote), 2 personal interests/hobbies.
+- **Resume**: Upload `resume.pdf` if you have it; otherwise provide Education, Experience entries, Skills list, Awards.
+- **Projects**: For each project (3–6), provide:
+  - Title, short description (1–2 lines), tech stack, repo URL, demo URL (if any), role and contributions, 2–3 bullet takeaways, any images/GIFs/videos.
+  - If you don’t have 3 projects, ask if I should scaffold 1–2 sample projects with realistic content.
+- **Images and assets**: Provide logos, screenshots, avatar, and any demo GIFs. If you don’t have them, ask if I should generate placeholders and how you want them styled.
+- **Design preferences**: Preferred color palette, fonts (system or Google Fonts), dark mode preference.
+- **Contact**: Email to display, LinkedIn, GitHub, Twitter (optional).
+- **Extras**: Do you want a blog? Do you want analytics? Do you want a contact form that stores submissions?
+
+7) Repo structure and files to generate
+Create these files and folders with example content and templates:
+- `README.md` — project overview, how to run, deploy, and edit content.
+- `package.json`, `tsconfig.json` (if TypeScript), `tailwind.config.js`.
+- `src/pages/index.(tsx|jsx)` — landing page.
+- `src/pages/resume.(tsx|jsx)` — HTML resume.
+- `src/pages/projects/[slug].(tsx|jsx)` — project template.
+- `content/projects/*.md` — 3 example project markdown files with frontmatter.
+- `public/images/` — placeholder images and demo GIFs.
+- `components/` — `Header`, `Footer`, `ProjectCard`, `SkeletonLoader`, `Tooltip`, `Modal`.
+- `lib/content.ts` — markdown loader and helper functions.
+- `netlify.toml` or `vercel.json` and GitHub Actions workflow for CI.
+- `scripts/generate-resume.js` (optional) to export resume PDF from HTML if requested.
+
+8) Development tasks and commands
+- Provide exact commands to run locally:
+  - `git clone <repo>`
+  - `npm install` or `pnpm install`
+  - `npm run dev` (local dev)
+  - `npm run build && npm run start` (production)
+- Provide deployment steps for Vercel/Netlify and how to connect the GitHub repo.
+
+9) Acceptance criteria and testing
+- Site builds without errors and deploys to Vercel/Netlify.
+- Pages are responsive and pass basic accessibility checks (semantic HTML, alt text).
+- Projects render from Markdown and each project page has links to repo/demo.
+- Skeleton loaders appear while content is loading.
+- Tooltips are keyboard accessible.
+- README explains how to update content and deploy.
+
+10) Interaction rules for you (the assistant)
+- If any content, image, or decision is missing, ask me one question at a time in a conversational tone and wait for my reply.
+- When you propose defaults (colors, fonts, sample project text), show them and ask: "Keep these defaults or provide your preference?"
+- Provide short code snippets inline when you need me to paste or change something locally.
+- When finished, produce a checklist of delivered items and next recommended improvements.
+
+11) Extra UI/UX features I asked about — implement if feasible
+- **Skeleton Loaders**: implement for project lists and project pages (SHOULD).
+- **Caching**: implement `stale-while-revalidate` for any client API calls and set long cache headers for static assets (SHOULD).
+- **Optimistic Rendering**: implement only for small demo interactions (MAY). If it complicates the first release, skip and document how to add later.
+- **Tooltips**: implement accessible tooltips for buttons (MUST).
+- **Animations**: add subtle microinteractions (hover, focus, reveal) using CSS transitions; avoid heavy JS animations (SHOULD).
+- If any of the above is too complex or would harm performance, explain why and propose a simpler approach.
+
+12) Deliver a final message when done
+- After building, show me:
+  - Live URL (if deployed).
+  - Repo URL.
+  - Short usage guide: how to edit content, add a project, change colors, and deploy.
+  - A short list of follow‑ups I can request (e.g., add contact form, add CMS, add blog).
+
+Start by asking me the first set of required content questions conversationally:
+- "Please provide your one‑line value statement for the hero, or say 'I need help' and I will propose one."
+- "Do you want to use a real photo or an avatar? If real photo, please upload it now."
+- "Do you want TypeScript or plain JavaScript?"
+- "Do you want Vercel or Netlify for deployment?"
+Wait for my answers before scaffolding files that require personal content.
+
+
+Cursor AI Response:
+Great project — I'll help you build a polished, production-ready portfolio for Raynell. Before I scaffold anything that depends on your personal content, I need a few decisions from you.
+
+1. Hero value statement
+What's your one-line value statement for the hero? Something like "I build clean, accessible web apps that solve real problems."
+If you're not sure yet, just say "I need help" and I'll propose a few options tailored to a fresh CS grad.
+
+2. Photo or avatar
+Do you want a real photo or an avatar/initials on the hero?
+If photo, please upload it now so I can wire it in from the start.
+
+3. TypeScript or JavaScript
+Do you want TypeScript or plain JavaScript? My default is TypeScript for better maintainability on a portfolio you'll update over time — but either works.
+
+4. Deployment
+Vercel or Netlify? I default to Vercel with Next.js static export unless you prefer Netlify.
+
+Reply with your choices and we'll move to the next batch (about, resume, projects, design, contact).
+
+
+I said:
+1. I need help
+2. What is that photo for? Is that like for my profile? If yes, use my picture and my picture is already at the root directory of the folder, it is the "profile_picture.png"
+3. I'd like to use typscript
+4. I'd like to use vercel
+
+Cursor Ai Response:
+Yes — the photo is for your profile on the hero section: the first thing visitors see, usually beside your name and one-line pitch. It helps the site feel personal and trustworthy. I'll use profile_picture.png from the project root and optimize it for the site (I'll move it to public/images/ during setup).
+
+TypeScript and Vercel — noted.
+
+Hero value statement options
+Since you're a fresh CS grad, here are four directions. Pick one, tweak one, or mix elements:
+
+Builder-focused
+"I build clean, accessible web applications that turn ideas into reliable software."
+
+Problem-solver
+"Computer Science graduate who designs and ships practical software — from UI to backend."
+
+Full-stack lean
+"Full-stack developer passionate about performant, user-centered apps and thoughtful engineering."
+
+Career-ready
+"Recent CS grad seeking to build impactful software with modern tools and solid fundamentals."
+
+My recommendation: #1 or #2 — they sound confident without overstating experience.
+
+Reply with the number you want (or your own wording), and we'll move on.
+
+Next up — About section:
+In 2–4 sentences, how would you describe yourself? Include:
+
+Your location (city/country or "open to remote")
+What you're looking for (internship, full-time, remote, etc.)
+2 hobbies or interests (e.g., gaming, hiking, open source)
+Example: "I'm Raynell, a CS grad based in Manila, open to remote full-time roles. I enjoy building side projects and contributing to open source. Outside code, I'm into photography and basketball."
+
+Paste your bio (or say "use a placeholder" and I'll draft one).
+
+
+I said:
+I think for the hero value statement is number 4 because I think that is more generalized in doing software development. No.1 is like just only building web application (which is not for me), no.2 is like for a designer (which is not for me), no.3 is a bit like too confident in full stack development (i'm not too confident in full stack because I am only vibe coding everything.
+
+Describing myself (You can draft something derived from these, also add something or suggest something):
+I am Raynell Vick F. Abuan, from Parian Oeste, Bauang, La Union, open for remote but also willing to relocate for on-site. I am looking for full-time job, can be remote, hybrid, or onsite. Hobbies are anime(watching) and gaming.
+
+
+Cursor AI Response:
+Hero — locked in
+
+We'll use option #4:
+
+"Recent CS grad seeking to build impactful software with modern tools and solid fundamentals."
+
+That fits a general software path without overclaiming full-stack or web-only work.
+
+About — draft for your approval
+
+I'm Raynell Vick F. Abuan, a Computer Science graduate from Parian Oeste, Bauang, La Union. I'm looking for a full-time software development role — remote, hybrid, or on-site — and I'm open to relocating for the right opportunity. I enjoy turning ideas into working software through hands-on building and learning. Outside of code, I unwind with anime and gaming.
+
+Small additions I'd suggest (optional):
+
+One line on what you enjoy building (e.g. "I like working on practical apps and tools that solve everyday problems") — keeps it general, not "full-stack expert."
+If you want a softer tone around how you learn: "I learn by building — experimenting, iterating, and picking up what each project needs." That reflects vibe-coding without sounding unprofessional.
+Keep this draft as-is, or tell me what to tweak (e.g. add a CS specialization, graduation year, or that "learn by building" line).
+
+Next — resume
+
+Do you already have a resume.pdf to upload, or should I build the HTML resume from details you paste here?
+
+If no PDF yet, send (bullets are fine):
+
+Education — school, degree, graduation year, relevant coursework or honors
+Experience — internships, part-time, freelance, school projects framed as work
+Skills — languages, frameworks, tools you're comfortable listing
+Awards / certifications — if any
+Reply with the PDF, the resume details, or "scaffold placeholder resume" and I'll use realistic placeholder content you can replace later.
+
+I said:
+Can you also add like "Magna Cum Laude" in my about because I graduated as magna cum laude too. Alsp, I am also open to other tech job oppurtunities like IT support, networking, and others, not just only in software development, but indicate that I am wiling to learn and can easily adapt.
+
+I also like this line sugestion you said "I like working on practical apps and tools that solve everyday problems"
+
+As for the resume, I have already uploaded my resume in the project root directory "resume.pdf", but can you also build other resume? for backup purposes only, resumes for other job role, because my current resume is something like tailored specifically for software development or sotware engineering, but do not upload it. I will choose soon what to upload. Let me see first what is better but for now, use the resume.pdf in the project root directory
+
+Cursor AI Response:
+About — updated draft
+
+I'm Raynell Vick F. Abuan, a Magna Cum Laude Computer Science graduate from Parian Oeste, Bauang, La Union. I'm looking for a full-time role in tech — remote, hybrid, or on-site — and I'm open to relocating for the right opportunity. While I'm especially interested in software development, I'm also open to other paths like IT support, networking, and related roles; I'm willing to learn and adapt quickly to new tools and responsibilities. I like working on practical apps and tools that solve everyday problems. Outside of work, I unwind with anime and gaming.
+
+If that reads well, we'll use it as-is. Say if you want anything softer or stronger (e.g. graduation year, school name).
+
+Resume plan
+
+Both files are in the project root:
+
+profile_picture.png
+resume.pdf
+Primary (live on the site for now):
+
+Download link → resume.pdf
+HTML resume page → built from your PDF content (or a structured version we derive from it)
+Backup HTML resumes (not linked in nav; for you to compare later):
+
+Software / engineering (aligned with your current PDF)
+IT support
+Networking / infrastructure
+General tech (broader, highlights adaptability)
+These will live as separate routes or drafts (e.g. /resume/software, /resume/it-support) — not promoted on the homepage until you pick one. Nothing extra gets uploaded to Vercel beyond what we wire up; alternate versions stay in the repo for local preview.
+
+I'll read resume.pdf when we scaffold to populate the HTML resume(s).
+
+Next — projects
+
+For the portfolio we need 3–6 projects. For each, send whatever you have (bullets are fine):
+
+Field	What to send
+Title
+Project name
+Description
+1–2 lines
+Tech stack
+e.g. Python, React, etc.
+Repo URL
+GitHub link if public
+Demo URL
+Live demo or "none"
+Your role
+What you did
+Takeaways
+2–3 bullet results/learnings
+Media
+Screenshot/GIF, or say "placeholder"
+If you don't have 3 real projects yet, say "scaffold sample projects" and I'll create 1–2 realistic placeholders plus slots for your real work — styled as student/portfolio projects, not fake "production" claims.
+
+Paste one project to start, or tell me to scaffold samples.
+
+I said:
+My about is all good now.
+
+for the files I am uploading in the project directory, move them later to their proper path or folder for better organization of files.
+
+For the projects, are you capable on scanning a github profile and see all published repositories and suggest things to put for my projects? As for the media, put a placehodler for now, I will add it later. The image attached are the repositories in my github. GovConnect is like a CMS for government website. everything about it is editable and can be adapted by other LGU to use it for their own. It is our thesis project during my fourth year and we we're awarded as the college best thesis under the governance category. I am the sole developer of it. I was also the leader of our group. dostmonthlyconsumptionmonitoring is a monitory system for DOST R1 to their electricity and fuel. It is our project during our internship period in DOST R1. FlagCeremonyAttendanceMonitoringApp is our project in one of our subject. I am the sole developer of it and I am the leader of the group. It is a mobile app to monitor the attendees of the student in our flag raising ceremony in our college (College of computer science). AnimeWebsite is our project in our web development course, it is a by-pair group. I am mainly the developer, but the designer was my pair. SimpleCandyCrushGame was my project in our OOP subject during our 2nd year. It was made purely with java and it was code from scratch without any AI codes on it. I manually code everything using only my knowlede. It is the only project that I build without the help of AI or any other tools or community like stackoverflow. AppDevSMSProject was our project in midterm in our application development course. It is basically like a voting system but using sms to text to vote, utilizing ozeki technology. It is a grouped activity but I am the sole developer of it. SMSVotingProject was also our project during our final term in application development course. It is the enhanced version and has more features than the project during our midterm. appDev-attendancechecker was also a project of one of our course which is a combination of software and hardware because that attendance checking uses qr code and fingerprint for verification. It uses arduino and different hardwares. I am also the sole developer of it.
+
+Let me know if there's still anything you need to know like the languages used or whatnot, or maybe you can scan through my github profile and see every respository if it is possible.
+
+CUrsor AI Response:
+Yes — I can scan public GitHub repos. Your profile is github.com/rynllvck5. I pulled your public repos and matched them to what you described. dostMonthlyConsumptionMonitoring is private, so it won’t show via the API — we’ll still feature it with your details and handle the repo link carefully (demo/description only, or “available on request”).
+
+Uploaded files (profile_picture.png, resume.pdf) will go into proper paths when we scaffold — e.g. public/images/profile_picture.png and public/resume.pdf.
+
+Recommended 5 projects for the portfolio
+These show leadership, real-world work, mobile, hardware, and breadth without repeating the same story twice.
+
+Priority	Project	Why feature it	GitHub	Demo
+1
+GovConnect
+Thesis flagship — CMS for LGU sites, college best thesis (governance), sole developer & team lead
+Public (JavaScript)
+Placeholder
+2
+DOST Monthly Consumption Monitoring
+Real internship deliverable for DOST Region I
+Private — no public repo link unless you make it public
+Placeholder
+3
+Flag Ceremony Attendance App
+Mobile app (Expo/TypeScript), sole developer & team lead
+Public
+Placeholder
+4
+Attendance Checker (QR + Fingerprint)
+Software + hardware — Arduino, QR, fingerprint; stands out for IT/networking-adjacent roles
+Public (Kotlin)
+Placeholder
+5
+SMS Voting System (Final)
+Enhanced SMS voting with Ozeki; sole developer
+Public
+Placeholder
+Saved for “More projects” or a 6th slot (your call):
+
+SimpleCandyCrushGame — Strong “built from scratch, no AI” story; good for fundamentals.
+AnimeWebsite — Web dev course; you coded, pair designed.
+appDevSMSProject — Midterm version; I’d fold this into the SMS Voting story rather than its own page.
+Draft copy per project (for your approval)
+I'll flesh these out in Markdown when we build. Quick previews:
+
+1. GovConnect
+Problem: LGUs need editable government websites without rebuilding from scratch.
+Approach: CMS-style platform adaptable per LGU.
+Role: Sole developer & team lead (4th-year thesis).
+Results: College Best Thesis — Governance category; reusable for other LGUs.
+Tech: JavaScript (+ whatever stack you used — React, Node, etc. — confirm if you can).
+
+2. DOST Monthly Consumption Monitoring
+Problem: Track electricity and fuel consumption across DOST R1.
+Role: Internship team project at DOST Region I.
+Results: Operational monitoring for agency use.
+Tech: JavaScript (per your GitHub) — confirm DB/tools if you remember.
+
+3. Flag Ceremony Attendance App
+Problem: Manual tracking of flag ceremony attendance at CCS.
+Approach: Mobile app for recording student attendance.
+Role: Sole developer & team lead.
+Tech: TypeScript, Expo/React Native.
+
+4. QR + Fingerprint Attendance Checker
+Problem: Reliable attendance with anti-spoofing.
+Approach: Android app + Arduino; QR and fingerprint verification.
+Role: Sole developer.
+Tech: Kotlin, Arduino, hardware integration.
+
+5. SMS Voting System
+Problem: Run votes via SMS for app dev course.
+Approach: Ozeki SMS gateway; midterm → enhanced final version.
+Role: Sole developer (group project).
+Tech: PHP (GitHub); README mentions Flutter — which was the final stack?
+
+Reply with:
+
+OK for these 5, or swap in Candy Crush / Anime / a 6th project.
+Tech stacks for GovConnect and DOST if you remember (e.g. React, Laravel, MySQL).
+SMS Voting: PHP, Flutter, or both?
+Next — design
+
+Do you want light mode, dark mode, or both with a toggle?
+
+Default I'd use: clean light theme, deep blue/teal accent, system fonts + one Google Font (e.g. Inter or DM Sans), subtle hover animations.
+
+Keep those defaults, or share colors/fonts you prefer?
+
+I said:
+Both GovConnect and DOST we're developed using PERN Stacked. But the dost project was also dockered. Add also in the qr fingerprint attendance checker that I used android studio there. For the 2 SMS Voting, I used the flutter/dart then php and mysql and also ozeki for SMS.  QR + Fingerprint attendance checker was also a group project but I am the sole developer of it and I am the leader. For our dost project, I am the project manager, as well as lead developer
+
+For the design (mode), if possible to have toggle, much better, but if it is too complicated, maybe stick to a theme. Or do you have any suggestion to have better UI and UX?
+
+And the AI Response:
+Project details — noted
+
+I'll use this when we write the Markdown:
+
+Project	Stack	Your role
+GovConnect
+PERN (PostgreSQL, Express, React, Node)
+Sole developer & team lead
+DOST Monthly Consumption Monitoring
+PERN + Docker
+Project manager & lead developer
+Flag Ceremony Attendance App
+TypeScript, Expo/React Native
+Sole developer & team lead
+QR + Fingerprint Attendance Checker
+Kotlin, Android Studio, Arduino, QR + fingerprint hardware
+Sole developer & team lead (group project)
+SMS Voting (midterm + final)
+Flutter/Dart, PHP, MySQL, Ozeki SMS
+Sole developer
+For SMS Voting I'll use one project page that covers both versions (midterm → enhanced final), unless you want two separate pages.
+
+DOST — private repo: I'll show description + stack on the site, and either omit the GitHub link or use "Repository private — available on request." Tell me which you prefer.
+
+Dark / light mode — recommendation
+A toggle is not too complicated for v1. With Next.js + Tailwind it's a common pattern (next-themes): one button in the header, preference saved in the browser, respects system setting on first visit.
+
+Suggested default UX:
+
+First visit: follow system light/dark preference
+Toggle: sun/moon in the header with an accessible label
+Persistence: remember choice on return visits
+So yes — I'll plan for both themes with a toggle unless you say otherwise.
+
+UI/UX suggestions (kept lightweight for performance)
+Clear hierarchy — Hero → About → Skills → Projects → Resume → Contact; sticky nav with active section highlight.
+Project cards — Title, 1-line summary, tech tags, links to repo/demo; click through to full case study.
+GovConnect first — Best thesis + sole dev = strongest story above the fold in Projects.
+Skills grouped — Languages, frameworks, tools, soft skills (leadership, PM, adaptability).
+Subtle motion — Fade-in on scroll, card hover lift; no heavy animation libraries.
+Skeleton loaders — Brief placeholders while project content loads.
+Accessible tooltips — On icon-only buttons (GitHub, LinkedIn, theme toggle).
+Mobile-first — Readable type, tap-friendly buttons, collapsible nav.
+Resume — Prominent "Download PDF" plus HTML version for quick scanning.
+Color system — Light: white/off-white + deep blue/teal accent; Dark: slate background + same accent for consistency.
+Default palette (easy to change in Tailwind config):
+
+Accent: #0d9488 (teal) or #2563eb (blue)
+Font: Inter or DM Sans
+Keep these defaults, or share hex codes / a font you like?
+
+Quick confirmations
+
+Five projects above — OK as the featured set?
+SMS Voting — one combined page?
+DOST repo link — omit public link, or "available on request"?
+Next — contact
+
+What should appear on the site?
+
+Email (display + mailto)
+GitHub — I'll use github.com/rynllvck5 unless you use another
+LinkedIn (URL)
+Twitter/X (optional — skip if you don't use it)
+Paste those and we'll move to analytics/blog (optional), then I'll scaffold the full site.
