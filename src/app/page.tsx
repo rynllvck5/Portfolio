@@ -7,6 +7,7 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { Tooltip } from "@/components/Tooltip";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { SkillsSection } from "@/components/skills";
 
 export default function HomePage() {
   const projects = getFeaturedProjects();
@@ -97,22 +98,9 @@ export default function HomePage() {
       </section>
 
       {/* Skills */}
-      <section
-        id="skills"
-        className="border-y border-slate-200 bg-white dark:border-slate-700 dark:bg-surface-card/50"
-      >
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <AnimatedSection>
-            <SectionHeading title="Skills" subtitle="Technologies and strengths" />
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <SkillGroup title="Languages" items={siteConfig.skills.languages} />
-              <SkillGroup title="Frameworks" items={siteConfig.skills.frameworks} />
-              <SkillGroup title="Tools" items={siteConfig.skills.tools} />
-              <SkillGroup title="Soft Skills" items={siteConfig.skills.soft} />
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      <AnimatedSection>
+        <SkillsSection title="Skills" subtitle="Technologies and strengths" />
+      </AnimatedSection>
 
       {/* Projects */}
       <section id="projects" className="mx-auto max-w-6xl px-4 py-20">
@@ -181,26 +169,6 @@ function SectionHeading({ title, subtitle }: { title: string; subtitle: string }
     <div className="mb-10">
       <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{title}</h2>
       <p className="mt-2 text-slate-600 dark:text-slate-400">{subtitle}</p>
-    </div>
-  );
-}
-
-function SkillGroup({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div>
-      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-accent dark:text-accent-light">
-        {title}
-      </h3>
-      <ul className="flex flex-wrap gap-2">
-        {items.map((item) => (
-          <li
-            key={item}
-            className="rounded-md bg-slate-100 px-2.5 py-1 text-sm text-slate-700 dark:bg-slate-700 dark:text-slate-200"
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
