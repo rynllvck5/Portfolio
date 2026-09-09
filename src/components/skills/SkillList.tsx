@@ -82,10 +82,12 @@ export function SkillList({ skills }: SkillListProps) {
               gap: itemGap,
             }}
           >
-            <Icon
-              className="flex-shrink-0 text-accent"
+            <span
+              className="inline-flex flex-shrink-0 text-accent"
               style={{ width: iconPx, height: iconPx }}
-            />
+            >
+              <Icon className="h-full w-full" />
+            </span>
             <div className="flex min-w-0 flex-col justify-center">
               <span
                 className="truncate font-medium leading-tight text-slate-900 dark:text-white"
