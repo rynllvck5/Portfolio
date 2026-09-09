@@ -33,3 +33,6 @@ next-env.d.ts
 # user uploads at root (copies live in public/)
 /profile_picture.png
 /resume.pdf
+
+#claude
+.claude/

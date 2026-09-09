@@ -5,6 +5,8 @@ import { getFeaturedProjects } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { Tooltip } from "@/components/Tooltip";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { ParallaxImage } from "@/components/ParallaxImage";
 
 export default function HomePage() {
   const projects = getFeaturedProjects();
@@ -55,7 +57,7 @@ export default function HomePage() {
               <Tooltip content="Browse featured projects">
                 <Link
                   href="#projects"
-                  className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-accent-dark hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   View Projects
                 </Link>
@@ -64,7 +66,7 @@ export default function HomePage() {
                 <a
                   href="/resume.pdf"
                   download
-                  className="inline-flex items-center rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent hover:text-accent dark:border-slate-600 dark:text-slate-200 dark:hover:border-accent-light dark:hover:text-accent-light"
+                  className="inline-flex items-center rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all duration-300 hover:border-accent hover:text-accent hover:shadow-md hover:-translate-y-0.5 dark:border-slate-600 dark:text-slate-200 dark:hover:border-accent-light dark:hover:text-accent-light"
                 >
                   Download Resume
                 </a>
@@ -75,13 +77,10 @@ export default function HomePage() {
             className="relative mx-auto h-48 w-48 animate-fade-in overflow-hidden rounded-full border-4 border-white shadow-xl dark:border-slate-700 sm:h-56 sm:w-56"
             style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
           >
-            <Image
+            <ParallaxImage
               src="/images/profile_picture.png"
               alt="Portrait of Raynell Vick F. Abuan"
-              fill
-              className="object-cover"
-              priority
-              sizes="224px"
+              speed={0.15}
             />
           </div>
         </div>
@@ -89,10 +88,12 @@ export default function HomePage() {
 
       {/* About */}
       <section id="about" className="mx-auto max-w-6xl px-4 py-20">
-        <SectionHeading title="About" subtitle="Who I am and what I'm looking for" />
-        <div className="prose prose-slate max-w-3xl dark:prose-invert">
-          <ReactMarkdown>{siteConfig.about}</ReactMarkdown>
-        </div>
+        <AnimatedSection>
+          <SectionHeading title="About" subtitle="Who I am and what I'm looking for" />
+          <div className="prose prose-slate max-w-3xl dark:prose-invert">
+            <ReactMarkdown>{siteConfig.about}</ReactMarkdown>
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* Skills */}
@@ -101,20 +102,24 @@ export default function HomePage() {
         className="border-y border-slate-200 bg-white dark:border-slate-700 dark:bg-surface-card/50"
       >
         <div className="mx-auto max-w-6xl px-4 py-20">
-          <SectionHeading title="Skills" subtitle="Technologies and strengths" />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <SkillGroup title="Languages" items={siteConfig.skills.languages} />
-            <SkillGroup title="Frameworks" items={siteConfig.skills.frameworks} />
-            <SkillGroup title="Tools" items={siteConfig.skills.tools} />
-            <SkillGroup title="Soft Skills" items={siteConfig.skills.soft} />
-          </div>
+          <AnimatedSection>
+            <SectionHeading title="Skills" subtitle="Technologies and strengths" />
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <SkillGroup title="Languages" items={siteConfig.skills.languages} />
+              <SkillGroup title="Frameworks" items={siteConfig.skills.frameworks} />
+              <SkillGroup title="Tools" items={siteConfig.skills.tools} />
+              <SkillGroup title="Soft Skills" items={siteConfig.skills.soft} />
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Projects */}
       <section id="projects" className="mx-auto max-w-6xl px-4 py-20">
-        <SectionHeading title="Projects" subtitle="Selected work from thesis, internship, and coursework" />
-        <ProjectsSection projects={projects} />
+        <AnimatedSection>
+          <SectionHeading title="Projects" subtitle="Selected work from thesis, internship, and coursework" />
+          <ProjectsSection projects={projects} />
+        </AnimatedSection>
       </section>
 
       {/* Resume CTA */}
@@ -123,45 +128,49 @@ export default function HomePage() {
         className="border-y border-slate-200 bg-surface-muted dark:border-slate-700 dark:bg-surface-dark"
       >
         <div className="mx-auto max-w-6xl px-4 py-16 text-center">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Resume</h2>
-          <p className="mx-auto mt-3 max-w-xl text-slate-600 dark:text-slate-300">
-            View my experience online or download the PDF version tailored for software roles.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/resume"
-              className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-dark"
-            >
-              HTML Resume
-            </Link>
-            <a
-              href="/resume.pdf"
-              download
-              className="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent dark:border-slate-600 dark:text-slate-200"
-            >
-              Download PDF
-            </a>
-          </div>
+          <AnimatedSection>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Resume</h2>
+            <p className="mx-auto mt-3 max-w-xl text-slate-600 dark:text-slate-300">
+              View my experience online or download the PDF version tailored for software roles.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/resume"
+                className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-dark"
+              >
+                HTML Resume
+              </Link>
+              <a
+                href="/resume.pdf"
+                download
+                className="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent dark:border-slate-600 dark:text-slate-200"
+              >
+                Download PDF
+              </a>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Contact */}
       <section id="contact" className="mx-auto max-w-6xl px-4 py-20">
-        <SectionHeading title="Contact" subtitle="Let's connect" />
-        <div className="grid gap-6 sm:grid-cols-3">
-          <ContactCard
-            label="Email"
-            value={siteConfig.email}
-            href={`mailto:${siteConfig.email}`}
-          />
-          <ContactCard label="GitHub" value="rynllvck5" href={siteConfig.github} external />
-          <ContactCard
-            label="LinkedIn"
-            value="linkedin.com/in/rynllvck"
-            href={siteConfig.linkedin}
-            external
-          />
-        </div>
+        <AnimatedSection>
+          <SectionHeading title="Contact" subtitle="Let's connect" />
+          <div className="grid gap-6 sm:grid-cols-3">
+            <ContactCard
+              label="Email"
+              value={siteConfig.email}
+              href={`mailto:${siteConfig.email}`}
+            />
+            <ContactCard label="GitHub" value="rynllvck5" href={siteConfig.github} external />
+            <ContactCard
+              label="LinkedIn"
+              value="linkedin.com/in/rynllvck"
+              href={siteConfig.linkedin}
+              external
+            />
+          </div>
+        </AnimatedSection>
       </section>
     </>
   );

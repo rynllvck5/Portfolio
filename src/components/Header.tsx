@@ -16,9 +16,22 @@ const navLinks = [
 export function Header() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -26,12 +39,16 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-700/80 dark:bg-surface-dark/80">
+      <div
+        className="absolute left-0 top-0 h-0.5 bg-gradient-to-r from-accent to-accent-light transition-all duration-150 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link
           href="/"
           className="text-lg font-bold tracking-tight text-slate-900 transition hover:text-accent dark:text-white dark:hover:text-accent-light"
         >
-          Raynell Vick F. Abuan<span className="text-accent"></span>
+          Raynell<span className="text-accent">.</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Main">

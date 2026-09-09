@@ -11,14 +11,14 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-md dark:border-slate-700 dark:bg-surface-card dark:hover:border-accent/40">
+    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg dark:border-slate-700 dark:bg-surface-card dark:hover:border-accent/60">
       <Link href={`/projects/${project.slug}`} className="flex h-full flex-col">
         <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
           <Image
             src={project.featuredImage}
             alt={`${project.title} preview`}
             fill
-            className="object-cover transition duration-300 group-hover:scale-105"
+            className="object-cover transition-all duration-500 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             loading="lazy"
           />
@@ -64,7 +64,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="ml-1 transition group-hover:translate-x-1"
+              className="ml-1 transition-all duration-300 group-hover:translate-x-1"
               aria-hidden="true"
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
@@ -79,7 +79,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md p-2 text-slate-500 transition hover:bg-slate-100 hover:text-accent dark:hover:bg-slate-700 dark:hover:text-accent-light"
+              className="rounded-md p-2 text-slate-500 transition-all duration-300 hover:bg-slate-100 hover:text-accent hover:scale-110 dark:hover:bg-slate-700 dark:hover:text-accent-light"
               aria-label={`${project.title} repository`}
               onClick={(e) => e.stopPropagation()}
             >
@@ -97,7 +97,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md p-2 text-slate-500 transition hover:bg-slate-100 hover:text-accent dark:hover:bg-slate-700 dark:hover:text-accent-light"
+              className="rounded-md p-2 text-slate-500 transition-all duration-300 hover:bg-slate-100 hover:text-accent hover:scale-110 dark:hover:bg-slate-700 dark:hover:text-accent-light"
               aria-label={`${project.title} live demo`}
               onClick={(e) => e.stopPropagation()}
             >
