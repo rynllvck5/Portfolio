@@ -202,6 +202,7 @@ export function SkillSphere({ category, isMobile }: SkillSphereProps) {
   return (
     <div
       ref={containerRef}
+      data-cursor="grab"
       className="relative cursor-grab overflow-visible active:cursor-grabbing"
       style={{
         width: isMobile ? "200px" : "280px",

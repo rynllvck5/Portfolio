@@ -29,6 +29,7 @@ const config: Config = {
         "fade-in": "fadeIn 0.5s ease-out forwards",
         "slide-up": "slideUp 0.5s ease-out forwards",
         "scale-in": "scaleIn 0.5s ease-out forwards",
+        "hero-float": "heroFloat 7s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -42,6 +43,10 @@ const config: Config = {
         scaleIn: {
           "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        heroFloat: {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(0, -8px, 0)" },
         },
       },
     },

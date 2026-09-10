@@ -23,13 +23,13 @@ export const siteConfig = {
   name: "Raynell Vick F. Abuan",
   title: "Raynell Abuan | Portfolio",
   description:
-    "CS graduate creating practical software that solves real problems. Building thoughtful digital experiences with code.",
+    "I build thoughtful digital experiences with code — full-stack apps, system tools, and practical software that solves real problems.",
   url: "https://raynell-abuan.vercel.app",
   email: "abuanrenren4@gmail.com",
   github: "https://github.com/rynllvck5",
   linkedin: "https://www.linkedin.com/in/rynllvck",
   heroStatement:
-    "CS graduate creating practical software that solves real problems. From full-stack web apps to system tools — I turn ideas into working solutions.",
+    "I build thoughtful digital experiences with code. Full-stack apps, system tools, and practical software people actually use.",
   about: `I'm **Raynell Vick F. Abuan**, a **Magna Cum Laude** Computer Science graduate from Parian Oeste, Bauang, La Union. I'm looking for a **full-time role** in tech — remote, hybrid, or on-site — and I'm **open to relocating** for the right opportunity.
 
 While I'm especially interested in **software development**, I'm also open to other paths like **IT support**, **networking**, and related roles; I'm **willing to learn** and **adapt quickly** to new tools and responsibilities. I like working on **practical apps and tools that solve everyday problems**.
